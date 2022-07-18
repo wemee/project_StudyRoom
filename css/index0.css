@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+/* body {
+  background: url(../images/bg.jpg)no-repeat;
+  padding: 0px;
+  margin: 0;
+  list-style: none;
+  overflow-X: hidden;
+  overflow: hidden;
+} */
+
 body {
   background: url(../images/bg-mobile.jpg)no-repeat;
   background-size: cover;
@@ -14,6 +23,14 @@ body {
     background: url(../images/bg3.jpg)no-repeat;
   }
 }
+
+
+/* h1{
+  font-size: 2.6rem;
+  font-weight: normal;
+  margin-top: 0;
+  text-align: center;
+} */
 
 h1 {
   font-size: 2.2rem;
@@ -42,6 +59,7 @@ img, svg {
   font-family: Pixel;
   src: url(../assets/點陣字體.ttf);
 }
+
 
 .instruction {
   position: fixed;
@@ -81,7 +99,6 @@ img, svg {
   cursor: pointer;
 }
 
-
 .close::before,
 .close::after {
   content: '';
@@ -95,9 +112,6 @@ img, svg {
   top: 50%;
   transform: translate(-50%, -50%) rotate(50deg);
 }
-
-
-
 
 @media (min-width: 992px) {
   .instruction {
@@ -128,6 +142,7 @@ img, svg {
   }
 }
 
+
 .close:hover {
   background: #4870a0;
 }
@@ -142,6 +157,8 @@ img, svg {
 
 }
 
+
+
 .mobile-act,
 .mobile-key {
   position: fixed;
@@ -149,6 +166,14 @@ img, svg {
   bottom: 40px;
   font-size: 0;
   z-index: 99;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .mobile-act,
+  .mobile-key {
+    display:none;
+  }
 }
 
 .mobile-act {
@@ -165,6 +190,7 @@ img, svg {
   margin: auto;
 }
 
+
 .ver {
   color: #fff;
   position: fixed;
@@ -175,6 +201,7 @@ img, svg {
 
 .container {
   position: relative;
+  margin: 15px;
 }
 
 @media (min-width: 992px) {
@@ -182,6 +209,20 @@ img, svg {
     margin: 15px;
   }
 }
+
+/* 
+.computer {
+  background: #fffb14;
+  display: block;
+  top: 11px;
+  width: 39px;
+  height: 21px;
+  left: 8px;
+  position: relative;
+  box-shadow: 0px 0px 10px 0px #fffb14,
+    0px 0px 10px 0px #fffb14;
+  animation: computer .2s infinite linear;
+} */
 
 .computer {
   background: #fffb14;
@@ -205,7 +246,6 @@ img, svg {
   }
 }
 
-
 @keyframes computer {
   0% {
     opacity: 0;
@@ -219,16 +259,9 @@ img, svg {
 
 .box,
 .person {
-  /* border: 1px solid #51f9ff;
-  opacity: .4; */
   position: absolute;
   box-sizing: border-box;
   text-align: center;
-}
-
-.box {
-  /* border: 1px solid yellow;
-  opacity: .5; */
 }
 
 .box.desk {
@@ -236,6 +269,28 @@ img, svg {
   background-position: center;
   background-size: contain;
 }
+
+
+/* .bookPerson {
+  top: -25px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 3;
+  height: 34px;
+  width: 39px;
+  margin: auto;
+  border-radius: 50%;
+  animation: person .3s infinite alternate;
+}
+
+.bookPerson::before {
+  content: url(../images/circle.png);
+  position: absolute;
+  top: -1px;
+  left: 0;
+} */
+
 
 .bookPerson {
   top: -20px;
@@ -246,10 +301,6 @@ img, svg {
   height: 24px;
   width: 25px;
   margin: auto;
-  /* background: url(../images/Screenshotter--YouTube--0’02”.jpg) #fff; */
-  /* background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; */
   border-radius: 50%;
   animation: person .3s infinite alternate;
 }
@@ -260,6 +311,16 @@ img, svg {
   top: -1px;
   left: 0;
 }
+
+/* .tableNum {
+  font-size: .5rem;
+  display: block;
+  padding-top: .7rem;
+  text-align: center;
+  font-weight: bold;
+  color: #492715;
+  font-family: 'Press Start 2P', cursive;
+} */
 
 .tableNum {
   font-size: .5rem;
@@ -290,6 +351,135 @@ img, svg {
     transform: scale(1);
   }
 }
+
+/* 
+.person {
+  z-index: 1;
+  background: url(../images/front00.png)no-repeat;
+  animation: person .3s infinite alternate;
+}
+
+.person .talk {
+  content: url(../images/dialog4.png);
+  position: relative;
+  transform: scaleX(1);
+  top: -10px;
+  opacity: 0;
+  transition: .5s;
+}
+
+.person .talk.show {
+  opacity: 1;
+  top: -25px;
+  left: 2px;
+  transition: .5s;
+}
+
+
+.person.top {
+  background: url(../images/back01.png)no-repeat;
+}
+
+.person.top-stop {
+  background: url(../images/back00.png)no-repeat;
+}
+
+
+@keyframes person {
+  0% {
+    margin-top: 3px;
+  }
+
+
+  100% {
+    margin-top: 0px;
+  }
+}
+
+
+@keyframes top {
+  0% {
+    background: url(../images/back01.png)no-repeat;
+  }
+
+  50% {
+    background: url(../images/back02.png)no-repeat;
+  }
+
+
+  100% {
+    background: url(../images/back01.png)no-repeat;
+  }
+}
+
+
+.person.down {
+  background: url(../images/front01.png)no-repeat;
+}
+
+.person.down-stop {
+  background: url(../images/front00.png)no-repeat;
+}
+
+
+@keyframes down {
+  0% {
+    background: url(../images/front01.png)no-repeat;
+  }
+
+  50% {
+    background: url(../images/front02.png)no-repeat;
+  }
+
+  100% {
+    background: url(../images/front01.png)no-repeat;
+  }
+}
+
+.person.left {
+  background: url(../images/left02.png)no-repeat;
+}
+
+.person.left-stop {
+  background: url(../images/left00.png)no-repeat;
+}
+
+@keyframes left {
+  0% {
+    background: url(../images/left02.png)no-repeat;
+  }
+
+  50% {
+    background: url(../images/left01.png)no-repeat;
+  }
+
+  100% {
+    background: url(../images/left02.png)no-repeat;
+  }
+}
+
+.person.right {
+  background: url(../images/right02.png)no-repeat;
+}
+
+.person.right-stop {
+  background: url(../images/right00.png)no-repeat;
+}
+
+@keyframes right {
+  0% {
+    background: url(../images/right02.png)no-repeat;
+  }
+
+  50% {
+    background: url(../images/right01.png)no-repeat;
+  }
+
+  100% {
+    background: url(../images/right02.png)no-repeat;
+  }
+} */
+
 
 
 .person {
@@ -436,7 +626,6 @@ img, svg {
 }
 
 .person.right {
-  /* animation: right 1s infinite alternate; */
   background: url(../images/right02.png)no-repeat;
   background-size: contain;
   background-position: center;
@@ -463,7 +652,35 @@ img, svg {
 }
 
 
+
 /* dialogBox */
+/* .dialogBox {
+  width: 70vw;
+  background: #fff;
+  border: 5px solid #4870a0;
+  box-shadow: inset 0px 0px 0px 9px #fff,
+    inset 0px 0px 0px 15px #4870a0,
+    inset 0px 8px 0px 15px #a0d0e0,
+    inset 5px 8px 0px 15px #a0d0e0,
+    inset -5px 8px 0px 15px #a0d0e0,
+    0px 4px 0px 0px #4870a0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  z-index: 99;
+  border-radius: 10px;
+  font-family: Pixel;
+  font-weight: 300;
+  padding: 50px 55px;
+  box-sizing: border-box;
+  font-size: 3.7rem;
+  letter-spacing: -3px;
+  opacity: 0;
+  display: none;
+} */
+
+
 .dialogBox {
   width: 80%;
   background: #fff;
@@ -513,6 +730,17 @@ img, svg {
   display: block;
 }
 
+/* .dialogBox.show.cannotBook {
+  border: 5px solid #b52828;
+  background: #fbeded;
+  box-shadow: inset 0px 0px 0px 9px #fbeded,
+    inset 0px 0px 0px 15px #b52828,
+    inset 0px 8px 0px 15px #e68b8b,
+    inset 5px 8px 0px 15px #e68b8b,
+    inset -5px 8px 0px 15px #e68b8b,
+    0px 4px 0px 0px #b52828;
+} */
+
 .dialogBox.show.cannotBook {
   border: 3px solid #b52828;
   background: #fbeded;
@@ -536,7 +764,6 @@ img, svg {
   }
 }
 
-
 .dialogBox.show.cannotBook .option {
   display: none;
 }
@@ -549,6 +776,10 @@ img, svg {
   position: relative;
   margin: 12px;
 }
+
+/* .option div {
+  padding-left: 40px;
+} */
 
 .option div {
   padding-left: 20px;
@@ -583,6 +814,8 @@ img, svg {
 }
 
 
+
+
 .checkbox-group {
   /* background-color: green; */
 }
@@ -596,6 +829,28 @@ img, svg {
 .checkbox-group {
   position: relative;
 }
+
+/* .checkbox-group .focus+label::before{
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 11px;
+  left: 0;
+  background: #1f1f1f;
+  box-shadow:
+    0px 0px 0px 0px #000,
+    0px 6px 0px 0px #000,
+    0px 12px 0px 0px #000,
+    0px 18px 0px 0px #000,
+    0px 24px 0px 0px #000,
+    6px 6px 0px 0px #1f1f1f,
+    6px 12px 0px 0px #000,
+    6px 18px 0px 0px #000,
+    12px 12px 0px 0px #1f1f1f;
+  animation: bling .7s infinite;
+} */
 
 .checkbox-group .focus+label::before {
   content: '';
@@ -643,7 +898,39 @@ img, svg {
   }
 }
 
+
 /* booking */
+/* .booking, .query, .cancel {
+  background: #fff;
+  border: 5px solid #4870a0;
+  box-shadow: inset 0px 0px 0px 9px #fff,
+    inset 0px 0px 0px 15px #4870a0,
+    inset 0px 8px 0px 15px #a0d0e0,
+    inset 5px 8px 0px 15px #a0d0e0,
+    inset -5px 8px 0px 15px #a0d0e0,
+    0px 4px 0px 0px #4870a0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 99;
+  border-radius: 10px;
+  font-family: Pixel;
+  font-weight: 300;
+  box-sizing: border-box;
+  font-size: 2rem;
+  letter-spacing: -3px;
+  opacity: 0;
+  display: none;
+  height: 85vh;
+}
+
+.query, .cancel {
+  height: 50vh;
+} */
+
 .booking, .query, .cancel {
   background: #fff;
   border: 3px solid #4870a0;
@@ -709,6 +996,21 @@ img, svg {
   display: block;
 }
 
+/* .booking form {
+  margin: 40px 55px;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.query form,
+.cancel form {
+  margin: 0px 55px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+} */
+
 .booking form {
   margin: 20px 25px;
   height: 90%;
@@ -737,6 +1039,15 @@ img, svg {
 
 
 
+/* input, select {
+  border: 0;
+  border-bottom: 5px solid #4870a0;
+  width: 100%;
+  font-family: Pixel;
+  font-size: 2rem;
+  outline: 0;
+} */
+
 input, select {
   border: 0;
   border-bottom: 3px solid #4870a0;
@@ -749,6 +1060,18 @@ input, select {
 }
 
 /*填資料區*/
+
+/* .input-group {
+  margin-bottom: 20px;
+  display: flex;
+  position: relative;
+}
+
+.input-group label {
+  width: 100%;
+  max-width: 80px;
+  padding: 5px;
+} */
 
 
 .input-group {
@@ -779,6 +1102,7 @@ input, select {
     line-height: 32px;
   }
 }
+
 
 .btn_booking {
   border: 3px solid #4870a0;
@@ -839,6 +1163,7 @@ input, select {
 }
 
 
+
 .input-group .notice {
   color: red;
   position: absolute;
@@ -890,6 +1215,25 @@ input, select {
 }
 
 
+/* .pic {
+  width: 250px;
+  height: 250px;
+  border: 5px solid #4870a0;
+  background: #fff;
+  color: #4870a0;
+  font-size: 8rem;
+  text-align: center;
+  line-height: 300px;
+  margin: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  position: relative;
+  background-image: url(../images/shot.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+
 .pic {
   width: 150px;
   height: 150px;
@@ -935,6 +1279,25 @@ progress {
 }
 
 
+/* #uploader {
+  padding: 5px 3px;
+  box-sizing: border-box;
+  width: 260px;
+  margin: auto;
+  border: 5px solid #4870a0;
+  border-top: 0px;
+  position: relative;
+}
+
+#uploader .run {
+  background-color: #3AB54A;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+} */
+
+
 #uploader {
   padding: 5px 3px;
   box-sizing: border-box;
@@ -959,6 +1322,7 @@ progress {
     border: 5px solid #4870a0;
   }
 }
+
 
 
 .input-group label.pic-control {
