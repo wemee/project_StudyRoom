@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自修室座位預約2</title>
+  <link rel="stylesheet" href="css/index.css?220708">
+</head>
+
+<body>
+  <!-- 手機版按鍵 -->
+
+  <div class="mobile-act">
+    <img src="images/Z.png" alt="" class="img-fluid mobile-z">
+    <img src="images/Enter.png" alt="" class="img-fluid mobile-enter">
+  </div>
+  <div class="mobile-key">
+    <img src="images/Top.png" alt="" class="img-fluid mobile-top">
+    <img src="images/Left.png" alt="" class="img-fluid mobile-left">
+    <img src="images/Down.png" alt="" class="img-fluid mobile-down">
+    <img src="images/Right.png" alt="" class="img-fluid mobile-right">
+  </div>
+
+  <div class="instruction show">
+    <picture>
+      <source srcset="images/use2.jpg"
+              media="(min-width: 992px)">
+      <img src="images/use3.jpg" class="img-fluid">
+    </picture>
+
+    <button type="button" class="close"></button>
+  </div>
+
+  <div class="container">
+    <div class="person animate">
+      <span class="talk">
+        <!-- <img src="../images/dialog.png" alt=""> -->
+      </span>
+    </div>
+    <div class="box-group">
+
+    </div>
+  </div>
+
+  <!-- 預約表單 -->
+  <div class="booking">
+    <form id="bookingForm">
+      <div class="input-group shot">
+        <div class="pic">
+          <!-- <img src="images/map2.jpg" alt="" class="img-fluid"> -->
+        </div>
+        <div id="uploader" for="file-upload">
+          <label for="file-upload" class="pic-control">
+            上傳大頭貼
+          </label>
+          <div class="run"></div>
+        </div>
+
+        <input autocomplete="off" id="file-upload" type="file" />
+
+      </div>
+      <label class="txt"></label>
+      <div class="input-group">
+        <label>座位:</label>
+        <span class="tableNum"></span>
+      </div>
+      <div class="input-group name">
+        <label for="inputBookName">姓名:<span class="notice" data-notice="book">必填!</span></label>
+        <input autocomplete="off" type="text" id="inputBookName">
+      </div>
+      <div class="input-group gender">
+        <label for="inputBookGender">性別:</label>
+        <select id="inputBookGender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div class="input-group tel">
+        <label for="inputBookTel">電話:<span class="notice" data-notice="book">必填!</span></label>
+        <input autocomplete="off" type="tel" id="inputBookTel">
+      </div>
+      <div class="input-group btn">
+        <button type="button" class="btn_out btn_booking">取消退出</button>
+        <button type="button" class="btn_submit btn_booking">預約送出</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 查詢表單 -->
+  <div class="query">
+    <form id="queryForm">
+      <h1>査詢預約</h1>
+      <div class="input-group name">
+        <label for="inputQueryName">姓名:<span class="notice" data-notice="query">必填!</span></label>
+        <input autocomplete="off" type="text" id="inputQueryName">
+      </div>
+      <div class="input-group gender">
+        <label for="inputQueryGender">性別:</label>
+        <select id="inputQueryGender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div class="input-group tel">
+        <label for="inputQueryTel">電話:<span class="notice" data-notice="query">必填!</span></label>
+        <input autocomplete="off" type="tel" id="inputQueryTel">
+      </div>
+      <div class="input-group btn">
+        <button type="button" class="btn_out btn_booking">退出査詢</button>
+        <button type="button" class="btn_submit btn_booking">送出資訊</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 取消表單 -->
+  <div class="cancel">
+    <form id="cancelForm">
+      <h1>取消預約</h1>
+      <div class="input-group name">
+        <label for="inputCancelName">姓名:<span class="notice" data-notice="cancel">必填!</span></label>
+        <input autocomplete="off" type="text" id="inputCancelName">
+      </div>
+      <div class="input-group gender">
+        <label for="inputCancelGender">性別:</label>
+        <select id="inputCancelGender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div class="input-group tel">
+        <label for="inputCancelTel">電話:<span class="notice" data-notice="cancel">必填!</span></label>
+        <input autocomplete="off" type="tel" id="inputCancelTel">
+      </div>
+      <div class="input-group btn">
+        <button type="button" class="btn_out btn_booking">退出取消</button>
+        <button type="button" class="btn_submit btn_booking">送出資訊</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 對話框 -->
+  <div class="dialogBox">
+    <div class="txt"></div>
+    <div class="option">
+      <div class="checkbox-group">
+        <input type="text" id="optionTop" class="focus" inputmode="none">
+        <label for="optionTop" class="optionTopText"></label>
+      </div>
+      <div class="checkbox-group">
+        <input type="text" id="optionDown" inputmode="none">
+        <label for="optionDown" class="optionDownText"></label>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js?220708" type="module"></script>
+
+</body>
+
+</html>
