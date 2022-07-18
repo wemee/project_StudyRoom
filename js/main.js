@@ -680,7 +680,8 @@ if (!isMobileDevice()) {
       dialogBox.className = 'dialogBox';
       bookForm.className = 'booking show';
       document.querySelector('.booking .tableNum').innerText = tableNum;
-      optionTop.classList='';
+      optionTop.classList=''; 
+      // 選完後要取消 focus，不然在手機版會有Bug >> 結束 dialog 後再按 enter 會出現 dialog
     } else if (optionTop.classList.contains('focus') && status === 'comp') {
       dialogBox.className = 'dialogBox';
       queryForm.className = 'query show';
