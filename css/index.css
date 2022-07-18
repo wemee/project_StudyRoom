@@ -147,7 +147,7 @@ img, svg {
 .mobile-key {
   position: fixed;
   right: 40px;
-  bottom: 40px;
+  bottom: 20px;
   font-size: 0;
   z-index: 99;
   display: block;
