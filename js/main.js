@@ -497,8 +497,8 @@ if (!isMobileDevice()) {
   })
 
 } else {
-  /* 手機版監聽 */
 
+  /* 手機版監聽 */
   const mobileTop = document.querySelector('.mobile-top')
   const mobileDown = document.querySelector('.mobile-down')
   const mobileLeft = document.querySelector('.mobile-left')
@@ -679,13 +679,16 @@ if (!isMobileDevice()) {
     if (optionTop.classList.contains('focus') && status === 'book') {
       dialogBox.className = 'dialogBox';
       bookForm.className = 'booking show';
-      document.querySelector('.booking .tableNum').innerText = tableNum
+      document.querySelector('.booking .tableNum').innerText = tableNum;
+      optionTop.classList='';
     } else if (optionTop.classList.contains('focus') && status === 'comp') {
       dialogBox.className = 'dialogBox';
       queryForm.className = 'query show';
+      optionTop.classList='';
     } else if (optionTop.classList.contains('focus') && status === 'querySuccess') {
       dialogBox.className = 'dialogBox';
       queryForm.className = 'query show';
+      optionTop.classList='';
     }
 
     // 下選項
@@ -693,14 +696,17 @@ if (!isMobileDevice()) {
       dialogBox.className = 'dialogBox';
       talk.className = 'talk show';
       // 結束對話時開啟animate
-      person.classList.add('animate')
+      person.classList.add('animate');
+      optionDown.classList='';
     } else if (optionDown.classList.contains('focus') && status === 'comp') {
       dialogBox.className = 'dialogBox';
       cancelForm.className = 'cancel show';
+      optionDown.classList='';
     } else if (optionDown.classList.contains('focus') && status === 'querySuccess') {
       dialogBox.className = 'dialogBox';
       talk.className = 'talk show';
-      person.classList.add('animate')
+      person.classList.add('animate');
+      optionDown.classList='';
 
       // 離開查詢結果表單要重置
       // 關閉表單
