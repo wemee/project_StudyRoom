@@ -142,6 +142,7 @@ img, svg {
 
 }
 
+
 .mobile-act,
 .mobile-key {
   position: fixed;
@@ -149,6 +150,14 @@ img, svg {
   bottom: 40px;
   font-size: 0;
   z-index: 99;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .mobile-act,
+  .mobile-key {
+    display:none;
+  }
 }
 
 .mobile-act {
