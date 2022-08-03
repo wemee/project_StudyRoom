@@ -13,12 +13,14 @@ const firebaseConfig = {
   measurementId: "G-VL630PMH4M"
 };
 
+
+
 // Firebase 初始化
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const storage = getStorage(app);
-const storageRef = ref(storage);
+
+
 
 
 // 獲取目前的座位預約資料
@@ -27,22 +29,22 @@ let hasBookSeat = []
 let hasBookShot = []
 async function getSeat () {
   const querySnapshot = await getDocs(collection(db, "bookingSeat"));
+
   querySnapshot.forEach((doc) => {
-    seatBooking.push([
-      doc.id, doc.data().status, doc.data().shot
-    ])
+    seatBooking.push([doc.id, doc.data().status, doc.data().shot])
+    // ['A-2', true, 'https://firebasestorage.googleapis.com/v0/b/projec…=media&token=2334a8b8-ca04-421e-94c4-c71dbfa2e88f']
   });
 
   // 找出已被預約的座位 ['A-1', true]
-  const result = seatBooking.filter(item => item[1] == true);
+  const seatIsBooking = seatBooking.filter(item => item[1] == true);
 
   // 再把已被預約的座位陣列過濾一次 (取桌號)
-  result.forEach((item) => {
+  seatIsBooking.forEach((item) => {
     hasBookSeat.push(item[0])
   })
 
   // 再把已被預約的座位陣列過濾一次 (取大頭貼網址)
-  result.forEach((item, index) => {
+  seatIsBooking.forEach((item, index) => {
     hasBookShot.push(item[2])
   })
 
@@ -80,12 +82,15 @@ let map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
+
+
 const isMobileDevice = () => {
   const mobileDevice = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone']
   let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
   return isMobileDevice
 }
 
+// 手機版
 if (isMobileDevice()) {
   x = 4;
   y = 3;
@@ -117,26 +122,21 @@ if (isMobileDevice()) {
   ]
 }
 
+
+// ===========================================================
+
+
 function creatSeat () {
 
-  console.log(hasBookSeat)
-  boxGroup.innerHTML = '' // 如果為取消位子後的渲染，不加此行的話會導致div疊加 
+  boxGroup.innerHTML = ''
 
   for (let a = 0; a < map.length; a++) {
     for (let b = 0; b < map[a].length; b++) {
 
       let div = document.createElement('div') //新增 html 節點
       div.className = 'box'
-      // div.innerText = `${a},${b}`
 
       // 新增 inline-style   background: ${map[a][b] ? 'yellow' : '#fff'};
-      // div.style.cssText = `
-      //     width:${range}px;
-      //     height:${range}px;
-      //     top:${a * range}px;
-      //     left:${b * range}px;
-      //   `;
-
       if (isMobileDevice()) {
         div.style.cssText = `
           width:${window.innerWidth / 11}px;
@@ -151,15 +151,16 @@ function creatSeat () {
           left:${b * range}px;`;
       }
 
+
       //桌上刻字
       if (map[a][b] !== 0 && map[a][b] !== 1 && map[a][b] !== 'Com') {
 
         div.className = 'box desk'
-
+        
         //將已被預約的座位增加大頭 hasBookSeat
-        const hasBooking = (element) => element == map[a][b];
+        const hasBooking = (e) => e == map[a][b];
         const res = hasBookSeat.findIndex(hasBooking)
-
+        // console.log(res)
 
         // 判斷對應的大頭貼是否有網址
         if (hasBookSeat.includes(map[a][b]) && res !== -1) {
@@ -185,6 +186,7 @@ function creatSeat () {
         div.innerHTML = `<span class="computer"></span>`
       } else {
         div.innerHTML = `<span class="tableNum" data-num="${map[a][b]}"></span>`
+        // div.innerText = `${a},${b}`
       }
 
       boxGroup.appendChild(div)
@@ -192,6 +194,8 @@ function creatSeat () {
   }
 }
 
+
+// ===========================================================
 
 
 let closeBtn = document.querySelector('.close')
@@ -208,8 +212,6 @@ const optionTopText = document.querySelector('.optionTopText')
 const optionDownText = document.querySelector('.optionDownText')
 let tableNum = ''
 
-// let x = 15;
-// let y = 17;
 
 function createPerson (x, y, walk) {
 
@@ -233,10 +235,14 @@ function createPerson (x, y, walk) {
   person.className = `person animate ${walk}`
 
 }
-
 createPerson(x, y)
 
+
+// ===========================================================
+
+
 let useCom = false;
+
 if (!isMobileDevice()) {
 
   document.addEventListener('keydown', e => {
@@ -270,43 +276,36 @@ if (!isMobileDevice()) {
         x--
         createPerson(x, y, 'top')
       }
-      // console.log(`map[${x}][${y}]`)
     }
 
     // 下  ArrowDown
     if (k == 'ArrowDown' && person.classList.contains('animate')) {
-
       talk.className = 'talk'
       useCom = false
       if (map[x + 1][y] === 0) {
         x++
         createPerson(x, y, 'down')
       }
-      // console.log(`map[${x}][${y}]`)
     }
 
     // 左  ArrowLeft
     if (k == 'ArrowLeft' && person.classList.contains('animate')) {
-
       talk.className = 'talk'
       useCom = false
       if (map[x][y - 1] === 0) {
         y--
         createPerson(x, y, 'left')
       }
-      // console.log(`map[${x}][${y}]`)
     }
 
     // 右   ArrowRight
     if (k == 'ArrowRight' && person.classList.contains('animate')) {
-
       talk.className = 'talk'
       useCom = false
       if (map[x][y + 1] === 0) {
         y++
         createPerson(x, y, 'right')
       }
-      // console.log(`map[${x}][${y}]`)
     }
 
 
@@ -367,6 +366,7 @@ if (!isMobileDevice()) {
 
   })
 
+
   document.addEventListener('keyup', e => {
 
     const k = e.key
@@ -375,9 +375,7 @@ if (!isMobileDevice()) {
     if (k == 'ArrowUp' && person.classList.contains('animate')) {
 
       person.className = `person animate top-stop`
-      // console.log(`map[${x}][${y}]`)
 
-      // 如果這時候停下是因為遇到桌子，則要出現 dialog
       if (map[x - 1][y] !== 1 && map[x - 1][y] !== 0 && map[x - 1][y] !== 'Com') {
         // // console.log('是桌子，編號為：' + map[x - 1][y])
         tableNum = map[x - 1][y]
@@ -393,9 +391,7 @@ if (!isMobileDevice()) {
     if (k == 'ArrowDown' && person.classList.contains('animate')) {
 
       person.className = `person animate down-stop`
-      // console.log(`map[${x}][${y}]`)
-
-      // 如果這時候停下是因為遇到桌子，則要出現 dialog
+      
       if (map[x + 1][y] !== 1 && map[x + 1][y] !== 0) {
         // // console.log('是桌子，編號為：' + map[x + 1][y])
         tableNum = map[x + 1][y]
@@ -408,9 +404,7 @@ if (!isMobileDevice()) {
     if (k == 'ArrowLeft' && person.classList.contains('animate')) {
 
       person.className = `person animate left-stop`
-      // console.log(`map[${x}][${y}]`)
 
-      // 如果這時候停下是因為遇到桌子，則要出現 dialog
       if (map[x][y - 1] !== 1 && map[x][y - 1] !== 0 && map[x][y - 1] !== undefined) {
         // console.log('是桌子，編號為：' + map[x][y - 1])
         tableNum = map[x][y - 1]
@@ -423,9 +417,7 @@ if (!isMobileDevice()) {
     if (k == 'ArrowRight' && person.classList.contains('animate')) {
 
       person.className = `person animate right-stop`
-      // console.log(`map[${x}][${y}]`)
 
-      // 如果這時候停下是因為遇到桌子，則要出現 dialog
       if (map[x][y + 1] !== 1 && map[x][y + 1] !== 0 && map[x][y + 1] !== 'Com' && map[x][y + 1] !== undefined) {
         // console.log('是桌子，編號為：' + map[x][y + 1])
         tableNum = map[x][y + 1]
@@ -439,6 +431,7 @@ if (!isMobileDevice()) {
     }
 
   })
+
 
   // 上選項監聽
   optionTop.addEventListener('keydown', e => {
@@ -462,6 +455,7 @@ if (!isMobileDevice()) {
     }
 
   })
+
 
   // 下選項監聽
   optionDown.addEventListener('keydown', e => {
@@ -488,9 +482,6 @@ if (!isMobileDevice()) {
       // 離開查詢結果表單要重置
       // 關閉表單
       queryFormReset()
-      // document.forms["queryForm"].reset();
-      // document.querySelector('.query .name .notice').className = 'notice'
-      // document.querySelector('.query .tel .notice').className = 'notice'
 
     }
 
@@ -718,12 +709,11 @@ if (!isMobileDevice()) {
   })
 }
 
+
 closeBtn.addEventListener('click', e => {
   document.querySelector('.instruction').classList.toggle('show');
 })
 
-
-// ===========================================================
 
 
 
@@ -770,6 +760,8 @@ function bookingFormReset () {
 }
 
 
+
+
 // 預約表單 -- 退出
 bookingOut.addEventListener('click', e => {
 
@@ -784,6 +776,8 @@ bookingOut.addEventListener('click', e => {
 
   talk.className = 'talk show'
 })
+
+
 
 
 // 預約表單 -- 送出
@@ -884,6 +878,8 @@ bookingSubmit.addEventListener('click', e => {
 });
 
 
+
+
 // 上傳大頭貼
 picUpload.addEventListener('change', e => {
 
@@ -943,7 +939,8 @@ picUpload.addEventListener('change', e => {
 })
 
 
-// ==========================
+// ===========================================================
+
 
 function queryFormReset () {
   document.forms["queryForm"].reset();
@@ -951,6 +948,7 @@ function queryFormReset () {
   document.querySelector('.query .name .notice').className = 'notice'
   document.querySelector('.query .tel .notice').className = 'notice'
 }
+
 
 
 // 查詢預約 -- 退出
@@ -966,6 +964,7 @@ queryOut.addEventListener('click', e => {
   // 結束對話時開啟animate
   person.classList.add('animate')
 })
+
 
 
 // 查詢預約 -- 送出
@@ -1039,13 +1038,18 @@ querySubmit.addEventListener('click', e => {
 })
 
 
-// ==========================
+
+// ===========================================================
+
+
 
 function cancelFormReset () {
   document.forms["cancelForm"].reset();
   document.querySelector('.cancel .name .notice').className = 'notice'
   document.querySelector('.cancel .tel .notice').className = 'notice'
 }
+
+
 
 // 取消預約 -- 退出
 cancelOut.addEventListener('click', e => {
@@ -1059,6 +1063,7 @@ cancelOut.addEventListener('click', e => {
   person.classList.add('animate')
   talk.className = 'talk show'
 })
+
 
 
 // 取消預約 -- 送出
@@ -1164,6 +1169,9 @@ cancelSubmit.addEventListener('click', e => {
 
 })
 
+
+
+
 // 練習建構 =================================
 
 function CheckForm (inputName, inputTel, status) {
@@ -1214,6 +1222,3 @@ CheckForm.prototype.checkForm = function () {
 
   this.notice = false
 }
-
-
-// ===========================================================
